@@ -65,10 +65,10 @@
 |----|------|--------|-------|
 |查询网关异常|iot/api/gatewayException|GET|无|
 |查询网关异常（分页）|iot/api/gatewayException/page/{page}|GET|页码|
-|查询一段时间内的网关异常|iot/api/gatewayException/{timetamp}|GET|字符串，格式:"时间戳1@时间戳2"|
+|查询一段时间内的网关异常|iot/api/gatewayException/{timetamp}|GET|字符串格式:"时间戳1@时间戳2"|
 |查询传感器异常|iot/api/sensorException|GET|无|
 |查询传感器异常（分页）|iot/api/sensorException/page/{page}|GET|页码|
-|查询一段时间内的传感器异常|iot/api/sensorException/{timetamp}|GET|字符串，格式:"时间戳1@时间戳2"|
+|查询一段时间内的传感器异常|iot/api/sensorException/{timetamp}|GET|字符串格式:"时间戳1@时间戳2"|
 
 #### 7. 下载相关
 |功能|请求uri|请求方式|请求参数|
