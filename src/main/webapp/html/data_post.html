@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟传感器数据提交</title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/dateformat.js"></script>
+    <script>
+        function sendPostRequest() {
+            var url = "../api/data/receive";
+            var val = Number.parseFloat($("#data").html());
+            var date = (new Date()).Format("yyyy-MM-dd hh:mm:ss");
+            var sensor_id = $("#sensor_id").val();
+            $.ajax({
+                method: "POST",
+                url: url,
+                //dataType:"json",
+                contentType: "application/json",
+                data: JSON.stringify(//需将原生json对象字符串化
+                    {data: val, time: date, sensor_id: sensor_id}
+                ),
+                success: function (responseData) {
+                    $("#status").html(responseData.status + "");
+                    $("#status").css("color", responseData.status ? "green" : "red");
+                    $("#message").html(responseData.message + "");
+                }
+            });
+        }
+
+        $(function () {
+            setInterval(function () {
+                $("#data").html(new String(100 * Math.random()).substring(0, 5));//模拟传感器数值实时变化
+            }, 1000)
+        });
+    </script>
+</head>
+<body>
+<div>
+    传感器id=<input id="sensor_id" type="number" value="1"><br>
+    数值data=<span id="data">0</span>
+</div>
+<h3>data表单</h3>
+<form id="form"></form>
+<hr>
+返回消息：
+<div>
+    <strong>
+        | status: <span id="status" style="color: green"></span> | message: <span style="color: blue"
+                                                                                  id="message"></span>|
+    </strong>
+</div>
+该api不提供返回数据
+<hr>
+提交传感器data数据：
+<button onclick="sendPostRequest()">提交POST请求</button>
+</body>
+</html>
